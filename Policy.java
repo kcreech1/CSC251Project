@@ -196,7 +196,9 @@ public class Policy
       */
       public double getBMI()
       {
-         return (weight * 703) / (height * height);
+         final int CONVERSION_FACTOR = 703;
+      
+         return (weight * CONVERSION_FACTOR) / (height * height);
       }
       
       /**
@@ -212,9 +214,9 @@ public class Policy
          final double ADDITIONAL_FEE_AGE = 75;
          
          final int BMI_THRESHOLD = 35;
-         final int ADDITIONAL_FEE_PER_BMI = 20;
+         final double ADDITIONAL_FEE_PER_BMI = 20;
          
-         final int ADDITIONAL_FEE_SMOKING = 100;
+         final double ADDITIONAL_FEE_SMOKING = 100;
          
          // If the policyholder is over 50 years old, there is an additional fee of $75
          if(age > AGE_THRESHOLD)
@@ -223,7 +225,7 @@ public class Policy
          }
          
          // If the policyholder is a smoker, there is an additional fee of $100
-         if(smokingStatus == "smoker")
+         if(smokingStatus.equalsIgnoreCase("smoker"))
          {
             price += ADDITIONAL_FEE_SMOKING;
          }
