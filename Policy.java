@@ -208,22 +208,30 @@ public class Policy
          final double BASE_FEE = 600; // The base fee of the insurance policy is $600
          double price = BASE_FEE;
          
+         final int AGE_THRESHOLD = 50;
+         final double ADDITIONAL_FEE_AGE = 75;
+         
+         final int BMI_THRESHOLD = 35;
+         final int ADDITIONAL_FEE_PER_BMI = 20;
+         
+         final int ADDITIONAL_FEE_SMOKING = 100;
+         
          // If the policyholder is over 50 years old, there is an additional fee of $75
-         if(age > 50)
+         if(age > AGE_THRESHOLD)
          {
-            price += 75;
+            price += ADDITIONAL_FEE_AGE;
          }
          
          // If the policyholder is a smoker, there is an additional fee of $100
          if(smokingStatus == "smoker")
          {
-            price += 100;
+            price += ADDITIONAL_FEE_SMOKING;
          }
          
          // If the policyholder's BMI is over 35, an additional fee is calculated based on their BMI
-         if(getBMI() > 35)
+         if(getBMI() > BMI_THRESHOLD)
          {
-            price += ((getBMI() - 35) * 20);
+            price += ((getBMI() - BMI_THRESHOLD) * ADDITIONAL_FEE_PER_BMI);
          }
          
          // Return the final price of the policyholder's insurance policy
