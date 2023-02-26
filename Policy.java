@@ -1,6 +1,6 @@
 public class Policy
 {
-   private int number; // Policy number
+   private String number; // Policy number
    private String providerName; // Insurance Provider's name
    private String firstName; // Policyholder's first name
    private String lastName; // Policyholder's last name
@@ -14,7 +14,7 @@ public class Policy
    */
    public Policy()
    {
-      number = 0;
+      String number = "-";
       providerName = "-";
       firstName = "-";
       lastName = "-";
@@ -34,7 +34,7 @@ public class Policy
          @param userHeight The user's height in inches
          @param userWeight The user's weight in pounds
       */
-      public Policy(int userNumber, String userProviderName, String userFirstName, String userLastName, int userAge, String userSmokingStatus, double userHeight, double userWeight)
+      public Policy(String userNumber, String userProviderName, String userFirstName, String userLastName, int userAge, String userSmokingStatus, double userHeight, double userWeight)
       {
          number = userNumber;
          providerName = userProviderName;
@@ -50,7 +50,7 @@ public class Policy
          Accesses the policyholder's policy number
          @return The policy number
       */
-      public int getPolicyNumber()
+      public String getPolicyNumber()
       {
          return number;
       }
@@ -59,7 +59,7 @@ public class Policy
          Sets a new value for the policyholder's policy number
          @param p The new policy number
       */
-      public void setPolicyNumber(int p)
+      public void setPolicyNumber(String p)
       {
          number = p;
       }

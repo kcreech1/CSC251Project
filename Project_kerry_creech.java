@@ -1,69 +1,63 @@
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
 public class Project_kerry_creech
 {
-   public static void main(String[] args)
+   public static void main(String[] args) throws IOException
    {
-      int policyNumber, age;
-      String providerName, firstName, lastName, smokingStatus;
+      // Variables
+      int age;
+      String policyNumber, providerName, firstName, lastName, smokingStatus;
       double height, weight;
-   
-      Scanner keyboard = new Scanner(System.in);
       
+      // Create an ArrayList to hold Policy Objects
+      ArrayList<Policy> policies = new ArrayList<Policy>();
       
-      // Prompt user for the policy number and store it in policyNumber
-      System.out.print("Please enter the Policy Number: ");
-      policyNumber = keyboard.nextInt();
+      // Read from PolicyInformation
+      File policyInfoFile = new File("PolicyInformation.txt");
       
-      // Clear the keyboard buffer by consuming the newline character, as input is going from numeric data to string data
-      keyboard.nextLine();
+      // Scanner to read from PolicyInformation
+      Scanner inputFile = new Scanner(policyInfoFile);
       
-      // Prompt user for the insurance provider name and store it in providerName
-      System.out.print("Please enter the Provider Name: ");
-      providerName = keyboard.nextLine();
+      // Check if file exists, exit program early if it doesn't exist
+      if(!policyInfoFile.exists())
+      {
+         System.out.println("Unable to locate file.");
+         System.exit(0);
+      }
       
-      // Prompt user for the policyholder's first name and store it in firstName
-      System.out.print("Please enter the Policyholder's First Name: ");
-      firstName = keyboard.nextLine();
+      // Read data inputs from PolicyInformation as long as the end hasn't been reached
+      while(inputFile.hasNext())
+      {
+         policyNumber = inputFile.nextLine(); // Policy number input
+         providerName = inputFile.nextLine(); // Provider name input
+         firstName = inputFile.nextLine(); // Policyholder's first name input
+         lastName = inputFile.nextLine(); // Policyholder's last name input
+         age = inputFile.nextInt(); // Policyholder's age input
+         
+         // Clear newline character (data input is going from numeric to String)
+         inputFile.nextLine();
+         
+         smokingStatus = inputFile.nextLine(); // Policyholder's smoking status input
+         height = inputFile.nextDouble(); // Policyholder's height input
+         weight = inputFile.nextDouble(); // Policyholder's weight input
+         
+         // Consume newline character and skip blank line
+         if(inputFile.hasNext())
+         {
+            inputFile.nextLine();
+            inputFile.nextLine();
+         }
+         
+         // Create a Policy object using the inputted information
+         Policy userPolicy = new Policy(policyNumber, providerName, firstName, lastName, age, smokingStatus, height, weight);
+         
+         // Add the Policy object to the ArrayList
+         policies.add(userPolicy);
+      }
       
-      // Prompt user for the policyholder's last name and store it in lastName
-      System.out.print("Please enter the Policyholder's Last Name: ");
-      lastName = keyboard.nextLine();
+      // Close PolicyInformation
+      inputFile.close();
       
-      // Prompt user for the policyholder's age and store it in age
-      System.out.print("Please enter the Policyholder's Age: ");
-      age = keyboard.nextInt();
-      
-      // Clear the keyboard buffer by consuming the newline character, as input is going from numeric data to string data
-      keyboard.nextLine();
-      
-      // Prompt user for the policyholder's smoking status and store it in smokingStatus
-      System.out.print("Please enter the Policyholder's Smoking Status (smoker/non-smoker): ");
-      smokingStatus = keyboard.nextLine();
-      
-      // Prompt user for the policyholder's height in inches and store it in height
-      System.out.print("Please enter the Policyholder's Height (in inches): ");
-      height = keyboard.nextDouble();
-      
-      // Prompt user for the policyholder's weight in pounds and store it in weight
-      System.out.print("Please enter the Policyholder's Weight (in pounds): ");
-      weight = keyboard.nextDouble();
-      
-      
-      // Create a Policy object using user inputs
-      Policy userPolicy = new Policy(policyNumber, providerName, firstName, lastName, age, smokingStatus, height, weight);
-      
-      
-      // Output values for userPolicy
-      System.out.println("Policy Number: " + userPolicy.getPolicyNumber());
-      System.out.println("Provider Name: " + userPolicy.getProviderName());
-      System.out.println("Policyholder's First Name: " + userPolicy.getFirstName());
-      System.out.println("Policyholder's Last Name: " + userPolicy.getLastName());
-      System.out.println("Policyholder's Age: " + userPolicy.getAge());
-      System.out.println("Policyholder's Smoking Status: " + userPolicy.getSmokingStatus());
-      System.out.printf("Policyholder's Height: %.1f\n", userPolicy.getHeight());
-      System.out.printf("Policyholder's Weight: %.1f\n", userPolicy.getWeight());
-      System.out.printf("Policyholder's BMI: %.2f\n", userPolicy.getBMI());
-      System.out.printf("Policy Price: $%.2f", userPolicy.getPolicyPrice());
    }
 }
