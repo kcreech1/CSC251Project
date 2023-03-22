@@ -10,8 +10,8 @@ public class Project_kerry_creech
       String policyNumber, providerName, firstName, lastName, smokingStatus;
       double height, weight;
       
-      // Variables to track the number of policyholders that are smokers and number of policyholders that are non-smokers
-      int smokerAmount = 0, nonSmokerAmount = 0;
+      // Variables to track the number of policyholders that are smokers
+      int smokerAmount = 0;
       
       
       // Create an ArrayList to hold Policy Objects
@@ -61,31 +61,27 @@ public class Project_kerry_creech
          
          // Add the Policy object to the ArrayList
          policies.add(policy);
-         
-         // Determine if the policyholder was a smoker or non-smoker, then increment appropriate variable
-         if(smokingStatus.equalsIgnoreCase("smoker"))
-         {
-            smokerAmount++;
-         }
-         else if(smokingStatus.equalsIgnoreCase("non-smoker"))
-         {
-            nonSmokerAmount++;
-         }
       }
       
       // Close PolicyInformation
       inputFile.close();
       
       // Display all of the policies in the ArrayList
-      for(int i = 0; i < policies.size(); i++)
+      for(Policy pol : policies)
       {
-         System.out.println(policies.get(i)); // Print the policy
-         System.out.println(policies.get(i).getPolicyHolder()); // Print the policyholder
+         System.out.println(pol); // Print the policy
+         System.out.println(pol.getPolicyHolder()); // Print the policyholder
+         
+         // Determine if the policyholder was a smoker
+         if(pol.getPolicyHolder().getSmokingStatus().equalsIgnoreCase("smoker"))
+         {
+            smokerAmount++;
+         }
       }
       
       // Display the number of policies, smokers, and non-smokers
       System.out.println("There were " + policies.get(0).getNumPolicies() + " Policy objects created.");
       System.out.println("The number of policies with a smoker is: " + smokerAmount);
-      System.out.println("The number of policies with a non-smoker is: " + nonSmokerAmount);
+      System.out.println("The number of policies with a non-smoker is: " + (policies.size() - smokerAmount));
    }
 }

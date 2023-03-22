@@ -85,12 +85,53 @@ public class Policy
    }
    
    /**
+      Calculates and returns the price of the insurance policy
+      @return The price of the insurance policy
+   */
+   public double getPolicyPrice()
+   {
+      final double BASE_FEE = 600; // The base fee of the insurance policy is $600
+      double price = BASE_FEE;
+      
+      final int AGE_THRESHOLD = 50;
+      final double ADDITIONAL_FEE_AGE = 75;
+      
+      final int BMI_THRESHOLD = 35;
+      final double ADDITIONAL_FEE_PER_BMI = 20;
+      
+      final double ADDITIONAL_FEE_SMOKING = 100;
+      
+      // If the policyholder is over 50 years old, there is an additional fee of $75
+      if(policyholder.getAge() > AGE_THRESHOLD)
+      {
+         price += ADDITIONAL_FEE_AGE;
+      }
+      
+      // If the policyholder is a smoker, there is an additional fee of $100
+      if(policyholder.getSmokingStatus().equalsIgnoreCase("smoker"))
+      {
+         price += ADDITIONAL_FEE_SMOKING;
+      }
+      
+      // If the policyholder's BMI is over 35, an additional fee is calculated based on their BMI
+      if(policyholder.getBMI() > BMI_THRESHOLD)
+      {
+         price += ((policyholder.getBMI() - BMI_THRESHOLD) * ADDITIONAL_FEE_PER_BMI);
+      }
+      
+      // Return the final price of the policyholder's insurance policy
+      return price;
+   }
+   
+   /**
       Displays the object as a string
       @return String representation of the object
    */
    public String toString()
    {
       return "Policy Number: " + number + "\n" +
-             "Provider Name: " + providerName;
+             "Provider Name: " + providerName + "\n" +
+             policyholder +
+             "Policy Price: " + String.format("$%.2f", getPolicyPrice()) + "\n";
    }
 }

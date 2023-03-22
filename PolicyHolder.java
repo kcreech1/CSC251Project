@@ -173,45 +173,6 @@ public class PolicyHolder
    }
    
    /**
-      Calculates and returns the price of the insurance policy
-      @return The price of the insurance policy
-   */
-   public double getPolicyPrice()
-   {
-      final double BASE_FEE = 600; // The base fee of the insurance policy is $600
-      double price = BASE_FEE;
-      
-      final int AGE_THRESHOLD = 50;
-      final double ADDITIONAL_FEE_AGE = 75;
-      
-      final int BMI_THRESHOLD = 35;
-      final double ADDITIONAL_FEE_PER_BMI = 20;
-      
-      final double ADDITIONAL_FEE_SMOKING = 100;
-      
-      // If the policyholder is over 50 years old, there is an additional fee of $75
-      if(age > AGE_THRESHOLD)
-      {
-         price += ADDITIONAL_FEE_AGE;
-      }
-      
-      // If the policyholder is a smoker, there is an additional fee of $100
-      if(smokingStatus.equalsIgnoreCase("smoker"))
-      {
-         price += ADDITIONAL_FEE_SMOKING;
-      }
-      
-      // If the policyholder's BMI is over 35, an additional fee is calculated based on their BMI
-      if(getBMI() > BMI_THRESHOLD)
-      {
-         price += ((getBMI() - BMI_THRESHOLD) * ADDITIONAL_FEE_PER_BMI);
-      }
-      
-      // Return the final price of the policyholder's insurance policy
-      return price;
-   }
-   
-   /**
       Displays the object as a string
       @return String representation of the object
    */
@@ -223,7 +184,6 @@ public class PolicyHolder
              "Policyholder's Smoking Status: " + smokingStatus + "\n" +
              "Policyholder's Height: " + height + " inches\n" +
              "Policyholder's Weight: " + weight + " pounds\n" +
-             "Policyholder's BMI: " + String.format("%.2f", getBMI()) + "\n" +
-             "Policy Price: " + String.format("$%.2f", getPolicyPrice()) + "\n";
+             "Policyholder's BMI: " + String.format("%.2f", getBMI()) + "\n";
    }
 }
