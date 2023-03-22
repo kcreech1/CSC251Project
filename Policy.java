@@ -3,6 +3,7 @@ public class Policy
    private String number; // Policy number
    private String providerName; // Insurance Provider's name
    private static int numPolicies = 0; // The number of policies that have been created
+   private PolicyHolder policyholder; // The policyholder
    
    /**
       No-arg Constructor
@@ -16,18 +17,21 @@ public class Policy
    
    /**
       Constructor
-      @param userNumber The user's policy number
-      @param userProviderName The user's insurance policy provider
+      @param number The user's policy number
+      @param providerName The user's insurance policy provider
+      @param policyholder The policyholder
    */
-   public Policy(String userNumber, String userProviderName, String userFirstName, String userLastName, int userAge, String userSmokingStatus, double userHeight, double userWeight)
+   public Policy(String number, String providerName, PolicyHolder policyholder)
    {
-      number = userNumber;
-      providerName = userProviderName;
+      this.number = number;
+      this.providerName = providerName;
       numPolicies++;
+      this.policyholder = new PolicyHolder(policyholder);
+      
    }
    
    /**
-      Accesses the policyholder's policy number
+      Gets the policyholder's policy number
       @return The policy number
    */
    public String getPolicyNumber()
@@ -45,7 +49,7 @@ public class Policy
    }
    
    /**
-      Accesses the insurance provider's name
+      Gets the insurance provider's name
       @return The provider's name
    */
    public String getProviderName()
@@ -63,12 +67,30 @@ public class Policy
    }
    
    /**
+      Gets the number of policies
+      @return The number of policies
+   */
+   public int getNumPolicies()
+   {
+      return numPolicies;
+   }
+   
+   /**
+      Accesses the PolicyHolder object
+      @return The PolicyHolder object
+   */
+   public PolicyHolder getPolicyHolder()
+   {
+      return policyholder;
+   }
+   
+   /**
       Displays the object as a string
       @return String representation of the object
    */
    public String toString()
    {
       return "Policy Number: " + number + "\n" +
-             "Insurance Provider Name: " + providerName;
+             "Provider Name: " + providerName;
    }
 }

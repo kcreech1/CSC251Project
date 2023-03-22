@@ -8,6 +8,52 @@ public class PolicyHolder
    private double weight; // Policyholder's weight in pounds
    
    /**
+      No-arg Constructor
+   */
+   public PolicyHolder()
+   {
+      firstName = " ";
+      lastName = " ";
+      age = 0;
+      smokingStatus = "non-smoker";
+      height = 0;
+      weight = 0;
+   }
+   
+   /**
+      Constructor
+      @param firstName The first name of the policyholder
+      @param lastName The last name of the policyholder
+      @param age The age of the policyholder
+      @param smokingStatus The smoking status of the policyholder
+      @param height The height of the policyholder in inches
+      @param weight The weight of the policyholder in pounds
+   */
+   public PolicyHolder(String firstName, String lastName, int age, String smokingStatus, double height, double weight)
+   {
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.age = age;
+      this.smokingStatus = smokingStatus;
+      this.height = height;
+      this.weight = weight;
+   }
+   
+   /**
+      Copy Constructor
+      @param obj A PolicyHolder object to make a copy of
+   */
+   public PolicyHolder(PolicyHolder obj)
+   {
+      firstName = obj.firstName;
+      lastName = obj.lastName;
+      age = obj.age;
+      smokingStatus = obj.smokingStatus;
+      height = obj.height;
+      weight = obj.weight;
+   }
+   
+   /**
       Accesses the policyholder's first name
       @return The policyholder's first name
    */
@@ -171,10 +217,13 @@ public class PolicyHolder
    */
    public String toString()
    {
-      return "Name: " + firstName + " " + lastName + "\n" +
-             "Age: " + age + "\n" +
-             "Smoking Status: " + smokingStatus + "\n" +
-             "Height: " + height + " inches\n" +
-             "Weight: " + weight + " lbs";
+      return "Policyholder's First Name: " + firstName + "\n" +
+             "Policyholder's Last Name: " + lastName + "\n" +
+             "Policyholder's Age: " + age + "\n" +
+             "Policyholder's Smoking Status: " + smokingStatus + "\n" +
+             "Policyholder's Height: " + height + " inches\n" +
+             "Policyholder's Weight: " + weight + " pounds\n" +
+             "Policyholder's BMI: " + String.format("%.2f", getBMI()) + "\n" +
+             "Policy Price: " + String.format("$%.2f", getPolicyPrice()) + "\n";
    }
 }
