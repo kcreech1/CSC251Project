@@ -2,6 +2,7 @@ public class Policy
 {
    private String number; // Policy number
    private String providerName; // Insurance Provider's name
+   private static int numPolicies = 0; // The number of policies that have been created
    
    /**
       No-arg Constructor
@@ -10,6 +11,7 @@ public class Policy
    {
       String number = "-";
       providerName = "-";
+      numPolicies++;
    }
    
    /**
@@ -21,6 +23,7 @@ public class Policy
    {
       number = userNumber;
       providerName = userProviderName;
+      numPolicies++;
    }
    
    /**
