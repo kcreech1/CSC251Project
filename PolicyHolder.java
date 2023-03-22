@@ -164,4 +164,17 @@ public class PolicyHolder
       // Return the final price of the policyholder's insurance policy
       return price;
    }
+   
+   /**
+      Displays the object as a string
+      @return String representation of the object
+   */
+   public String toString()
+   {
+      return "Name: " + firstName + " " + lastName + "\n" +
+             "Age: " + age + "\n" +
+             "Smoking Status: " + smokingStatus + "\n" +
+             "Height: " + height + " inches\n" +
+             "Weight: " + weight + " lbs";
+   }
 }

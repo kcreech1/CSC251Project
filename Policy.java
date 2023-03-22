@@ -58,4 +58,14 @@ public class Policy
    {
       providerName = n;
    }
+   
+   /**
+      Displays the object as a string
+      @return String representation of the object
+   */
+   public String toString()
+   {
+      return "Policy Number: " + number + "\n" +
+             "Insurance Provider Name: " + providerName;
+   }
 }
